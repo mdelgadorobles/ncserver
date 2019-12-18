@@ -1,0 +1,14 @@
+[Unit]
+Description=Server netcat service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=seal
+ExecStart=/usr/bin/socat TCP-LISTEN:1337,nodelay,reuseaddr,fork EXEC:"stdbuf -i0 -o0 -e0 /ruta/del/binario"
+
+[Install]
+WantedBy=multi-user.target
